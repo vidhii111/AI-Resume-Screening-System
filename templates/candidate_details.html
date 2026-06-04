@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>👤 Candidate Profile</h1>
+
+<div class="profile-card">
+
+<h2>{{ candidate[2] }}</h2>
+
+<p><strong>Email:</strong> {{ candidate[3] }}</p>
+
+<p><strong>Phone:</strong> {{ candidate[4] }}</p>
+
+<p><strong>Score:</strong> {{ candidate[5] }}%</p>
+
+<p><strong>Rating:</strong> {{ candidate[6] }}</p>
+
+<p><strong>Status:</strong> {{ candidate[7] }}</p>
+
+</div>
+
+<a href="/candidates">
+⬅ Back to Candidates
+</a>
+
+{% endblock %}

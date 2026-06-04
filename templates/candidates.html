@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>👥 Candidate Management</h1>
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search by name, email or resume">
+
+<button type="submit">
+Search
+</button>
+
+</form>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Resume</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Score</th>
+<th>Rating</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+{% for row in results %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>
+
+<a href="/candidate/{{ row[0] }}">
+
+{{ row[2] }}
+
+</a>
+
+</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}%</td>
+<td>{{ row[6] }}</td>
+<td>
+
+{% if row[7] == "Selected" %}
+
+<span class="selected-badge">
+🟢 Selected
+</span>
+
+{% elif row[7] == "Rejected" %}
+
+<span class="rejected-badge">
+🔴 Rejected
+</span>
+
+{% else %}
+
+<span class="review-badge">
+🟡 Review
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a
+class="select-btn"
+href="/update_status/{{ row[0] }}/Selected">
+Select
+</a>
+
+<a
+class="reject-btn"
+href="/update_status/{{ row[0] }}/Rejected">
+Reject
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

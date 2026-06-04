@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>🏆 Candidate Rankings</h1>
+
+<table>
+
+<tr>
+<th>Rank</th>
+<th>Resume</th>
+<th>Score</th>
+<th>Rating</th>
+</tr>
+
+{% for candidate in top_candidates %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+<td>{{ candidate[0] }}</td>
+<td>{{ candidate[1] }}%</td>
+<td>{{ candidate[2] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

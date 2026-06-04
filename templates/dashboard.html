@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>📊 ATS Dashboard</h1>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>Total Resumes</h3>
+<p>{{ stats[0] }}</p>
+</div>
+
+<div class="stat-card">
+<h3>Highest Score</h3>
+<p>{{ stats[1] }}%</p>
+</div>
+
+<div class="stat-card">
+<h3>Average Score</h3>
+<p>{{ "%.2f"|format(stats[2] or 0) }}%</p>
+</div>
+
+<div class="stat-card">
+<h3>Top Rating</h3>
+<p>A+</p>
+</div>
+
+</div>
+
+<h2>🏆 Top Candidates</h2>
+
+<table>
+
+<tr>
+<th>Rank</th>
+<th>Resume</th>
+<th>Score</th>
+<th>Rating</th>
+</tr>
+
+{% for candidate in top_candidates %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+
+<td>{{ candidate[0] }}</td>
+
+<td>{{ candidate[1] }}%</td>
+
+<td>{{ candidate[2] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

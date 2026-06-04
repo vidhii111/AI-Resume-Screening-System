@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Analysis Result</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 AI Resume Analysis Report</h1>
+<p style="text-align:center;">
+    ATS Powered Resume Screening System
+</p>
+
+<div class="profile-card">
+
+<h2>👤 Candidate Profile</h2>
+
+<p><strong>Name:</strong> {{ name }}</p>
+
+<p><strong>Email:</strong> {{ email }}</p>
+
+<p><strong>Phone:</strong> {{ phone }}</p>
+
+</div>
+
+<h2>💻 Resume Skills</h2>
+
+<ul>
+{% for skill in skills %}
+<li class="skill-tag">{{ skill }}</li>
+{% endfor %}
+</ul>
+
+<h2>📋 Required Skills</h2>
+
+<ul>
+
+{% for skill in job_skills %}
+<li>{{ skill }}</li>
+{% endfor %}
+
+</ul>
+
+<div class="score-card">
+
+<h2>🎯 ATS Match Score</h2>
+
+<p class="score">{{ score }}%</p>
+
+</div>
+
+<div class="progress-container">
+    <div class="progress-bar"
+         style="width: {{ score }}%;">
+    </div>
+</div>
+
+
+<div class="rating-card">
+
+<h2>⭐ Resume Rating</h2>
+
+<p class="rating">
+{{ rating }}
+</p>
+
+</div>
+
+<h2>❌ Missing Skills</h2>
+
+{% if missing and missing|length > 0 %}
+<ul>
+    {% for skill in missing %}
+    <li>{{ skill }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No missing skills 🎉</p>
+{% endif %}
+
+<h2>💡 ATS Recommendations</h2>
+
+{% if recommendations %}
+
+<ul>
+{% for item in recommendations %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+{% else %}
+
+<p>Resume matches job requirements well.</p>
+
+{% endif %}
+
+<br><br>
+
+<a href="/download_report"
+class="download-btn">
+
+📄 Download ATS Report
+
+</a>
+
+<br><br>
+
+<a href="/">
+Analyze Another Resume
+</a>
+
+</div>
+
+</body>
+</html>

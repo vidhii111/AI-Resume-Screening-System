@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>📈 Analytics</h1>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>Total Resumes</h3>
+<p>{{ stats[0] }}</p>
+</div>
+
+<div class="stat-card">
+<h3>Highest Score</h3>
+<p>{{ stats[1] }}%</p>
+</div>
+
+<div class="stat-card">
+<h3>Average Score</h3>
+<p>{{ "%.2f"|format(stats[2] or 0) }}%</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="chart-grid">
+
+<div class="chart-card">
+
+<h2>📊 Candidate Scores</h2>
+
+<canvas id="scoreChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>🥧 Candidate Status</h2>
+
+<canvas id="statusChart"></canvas>
+
+</div>
+
+</div>
+
+<script>
+
+const scoreCtx =
+document.getElementById(
+"scoreChart"
+);
+
+new Chart(scoreCtx, {
+
+type: "bar",
+
+data: {
+
+labels: [
+"Candidate 1",
+"Candidate 2",
+"Candidate 3",
+"Candidate 4"
+],
+
+datasets: [{
+
+label: "ATS Score",
+
+data: [
+85,
+70,
+95,
+60
+]
+
+}]
+
+}
+
+});
+
+const statusCtx =
+document.getElementById(
+"statusChart"
+);
+
+new Chart(statusCtx, {
+
+type: "doughnut",
+
+data: {
+
+labels: [
+"Selected",
+"Review",
+"Rejected"
+],
+
+datasets: [{
+
+data: [
+5,
+3,
+2
+]
+
+}]
+
+}
+
+});
+
+</script>
+
+{% endblock %}
