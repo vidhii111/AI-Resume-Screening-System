@@ -1,8 +1,8 @@
 import pdfplumber
 import re
-import spacy
+# import spacy
 
-nlp = spacy.load("en_core_web_sm")
+# nlp = spacy.load("en_core_web_sm")
 
 def extract_text(pdf_path):
     text = ""
